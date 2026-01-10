@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team of Jie and Maggie</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="top-nav">
+  <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/logo.png" alt="Company Logo" class="nav-logo">
+  <button class="mobile-menu-toggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-menu">
+    <li><a href="#about">ABOUT US</a></li>
+    <li><a href="#listings">FEATURED LISTINGS</a></li>
+    <li><a href="#transactions">PAST TRANSACTIONS</a></li>
+    <li><a href="#market">MARKET UPDATES</a></li>
+    <li><a href="#contact">CONTACT US</a></li>
+  </ul>
+</nav>
+
+<!-- 背景视频 + overlay -->
+<div class="video-overlay"></div>
+
+<video class="background-video" 
+       poster="https://res.cloudinary.com/luxuryp/videos/w_1920,c_scale,f_auto,q_auto/so_0,eo_0/m4nve20sid5ooten1rue/website-loop-v3.jpg"
+       loop muted autoplay playsinline webkit-playsinline>
+  <source src="https://res.cloudinary.com/luxuryp/videos/w_1920,c_scale,f_webm,vc_vp9,q_auto/m4nve20sid5ooten1rue/website-loop-v3.webm" type="video/webm;codecs=vp9">
+  <source src="https://res.cloudinary.com/luxuryp/videos/w_1920,c_scale,f_mp4,vc_h265,q_auto/m4nve20sid5ooten1rue/website-loop-v3.mp4" type="video/mp4;codecs=hvc1">
+  <source src="https://res.cloudinary.com/luxuryp/videos/w_1920,c_scale,f_mp4,vc_h264,q_auto/m4nve20sid5ooten1rue/website-loop-v3.mp4" type="video/mp4">
+</video>
+
+<!-- Hero Text -->
+<div class="text-copy">
+  <div class="agent-info">Maggie Pang | CA DRE# 02186012​</div>
+  <div class="agent-info">Jie Zheng | CA DRE# 01969518</div>
+</div>
+
+<!-- Scroll Indicator -->
+<a href="#about" class="scroll-indicator">
+  <span class="scroll-text">SCROLL</span>
+  <span class="scroll-arrow">›</span>
+</a>
+
+<!-- Main Content Sections -->
+<div class="content-sections">
+  
+  <!-- About Section -->
+  <section id="about" class="content-section">
+    <div class="section-container">
+      <h2>About Us</h2>
+      <div class="about-content">
+        <div class="agent-profile">
+          <h3>Maggie Pang</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+        <div class="agent-profile">
+          <h3>Jie Zheng</h3>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Listings Section -->
+  <section id="listings" class="content-section">
+    <div class="section-container">
+      <h2>Featured Listings</h2>
+      <div class="listings-grid">
+        <div class="listing-item">
+          <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400&h=300&fit=crop" alt="Property">
+          <h3>30781 Via Conquista</h3>
+          <p>San Juan Capistrano, CA 92675</p>
+          <p class="price">$3,398,000</p>
+        </div>
+        <div class="listing-item">
+          <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=400&h=300&fit=crop" alt="Property">
+          <h3>33841 Robles Dr</h3>
+          <p>Dana Point, CA 92629</p>
+          <p class="price">$2,250,000</p>
+        </div>
+        <div class="listing-item">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=300&fit=crop" alt="Property">
+          <h3>27724 Somerset Ln</h3>
+          <p>San Juan Capistrano, CA 92675</p>
+          <p class="price">$3,953,778</p>
+        </div>
+        <div class="listing-item">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop" alt="Property">
+          <h3>110 Copeland</h3>
+          <p>Irvine, CA 92618</p>
+          <p class="price">$1,600,000</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Past Transactions Section -->
+  <section id="transactions" class="content-section">
+    <div class="section-container">
+      <h2>Past Transactions</h2>
+      <div class="transactions-content">
+        <p class="intro-text">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h3>$450M+</h3>
+            <p>Total Sales Volume</p>
+          </div>
+          <div class="stat-item">
+            <h3>280+</h3>
+            <p>Properties Sold</p>
+          </div>
+          <div class="stat-item">
+            <h3>15+</h3>
+            <p>Years Experience</p>
+          </div>
+        </div>
+        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Market Update Section -->
+  <section id="market" class="content-section">
+    <div class="section-container">
+      <h2>Market Update</h2>
+      <div class="market-content">
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+        <div class="market-stats">
+          <div class="market-stat">
+            <h4>Median Home Price</h4>
+            <p class="stat-value">$1,850,000</p>
+            <p class="stat-change">+5.2% YoY</p>
+          </div>
+          <div class="market-stat">
+            <h4>Average Days on Market</h4>
+            <p class="stat-value">32 days</p>
+            <p class="stat-change">-8 days YoY</p>
+          </div>
+          <div class="market-stat">
+            <h4>Homes Sold</h4>
+            <p class="stat-value">145</p>
+            <p class="stat-change">+12% YoY</p>
+          </div>
+        </div>
+        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="content-section">
+    <div class="section-container">
+      <h2>Contact Us</h2>
+      <div class="contact-content">
+        <p class="contact-intro">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <h3>Phone</h3>
+            <p><a href="tel:+19493063083" class="hover-target">(949) 306-3083</a></p>
+            <p><a href="tel:+12018397150" class="hover-target">(201) 839-7150</a></p>
+          </div>
+          <div class="contact-item">
+            <h3>Email</h3>
+            <p><a href="mailto:fangpang@hotmail.com" class="hover-target">fangpang@hotmail.com</a></p>
+            <p><a href="mailto:???@???.com" class="hover-target">???@???.com</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
