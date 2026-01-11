@@ -529,6 +529,17 @@ body{
 		font-size: 36px;
 	}
 	
+	/* Mobile Hero Text Styles */
+	.text-copy .english-title {
+		font-size: 20px;
+		letter-spacing: 1px;
+	}
+	
+	.text-copy .chinese-title {
+		font-size: 18px;
+		letter-spacing: 2px;
+	}
+	
 	/* Mobile Navigation Styles */
 	.mobile-menu-toggle {
 		display: flex;
