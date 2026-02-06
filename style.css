@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@200;300;400;500;600;700&display=swap');
 
 /* Tailwind base styles override for font preservation */
@@ -9,12 +7,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p, span, div, a {
-	font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+	font-family: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+	font-weight: 300 !important;
+	letter-spacing: 0.02em;
 }
 
 html {
 	overflow-x: hidden;
 	width: 100%;
+}
+
+:root {
+	--slideshow-duration: 4.5s;
+	--slideshow-first-duration: 4s;
+	--slideshow-fade: 3.5s;
+	--slideshow-count: 5;
 }
 
 body{
@@ -24,7 +31,8 @@ body{
 	background: #1f2029;
 	overflow-x: hidden;
 	overflow-y: auto;
-	font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+	font-family: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: 300;
 	scroll-behavior: smooth;
 	margin: 0;
 	padding: 0;
@@ -135,39 +143,6 @@ body{
 	background-position: 99% 50%;
 }
 
-.section{
-	position: relative;
-	width: 100%;
-	display: block;
-	overflow: hidden;
-	height: 100vh;
-}
- .shadow-title{
-	position: fixed;
-	bottom: 20px;
-	right: 20px;
-	text-align: right;
-	font-size: 20px;
-	line-height: 1;
-	color: #ccc;
-	font-weight: 700;
-   letter-spacing: 1px;
-	z-index: 2;
-  opacity: 0.5;
-}
-
-.moving-image {
-	background: url('https://ivang-design.com/svg-load/hotel/move-img@2x.jpg') repeat fixed;
-	background-size: cover;
-	position: absolute;
-	top: 0; 
-	left: 0; 
-	right: 0;
-	bottom: 0;
-	z-index: 1;
-	width:100%;
-	opacity: 0.4;
-}
 
 .video-overlay {
 	position: fixed;
@@ -180,14 +155,44 @@ body{
 	pointer-events: none;
 }
 
-.background-video {
+.background-slideshow {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100vh;
-	object-fit: cover;
 	z-index: 1;
+	overflow: hidden;
+}
+
+.background-slideshow img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transform: scale(1);
+	transition: opacity var(--slideshow-fade) ease;
+	will-change: opacity;
+}
+
+.background-slideshow img:first-child {
+	opacity: 1;
+}
+
+.background-slideshow img.is-active {
+	opacity: 1;
+}
+
+.background-slideshow img.is-zooming {
+	animation: slideshowZoom 12s linear forwards;
+}
+
+@keyframes slideshowZoom {
+	0% { transform: scale(1); }
+	100% { transform: scale(1.07); }
 }
 
 .text-copy {
@@ -200,18 +205,24 @@ body{
 }
 
 .text-copy .english-title {
-	font-family: 'Cormorant Garamond', serif !important;
+	font-family: 'Bodoni 72', 'Bodoni MT', 'Playfair Display', serif !important;
 	font-size: 48px;
 	letter-spacing: 3px;
-	font-weight: 500;
+	font-weight: 300;
+	font-synthesis: none;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	font-variation-settings: "wght" 300;
 	font-variant: small-caps;
 }
 
 .text-copy .chinese-title {
 	font-family: 'Noto Sans SC', sans-serif;
 	font-size: 30px;
-	font-weight: 200;
+	font-weight: 100;
 	letter-spacing: 1px;
+	font-synthesis: none;
+	-webkit-font-smoothing: antialiased;
 }
 
 /* #Scroll Indicator
@@ -274,263 +285,10 @@ body{
 	z-index: 10;
 }
 
-.content-section {
-	padding: 100px 20px;
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.section-container {
-	max-width: 1200px;
-	width: 100%;
-	margin: 0 auto;
-	color: #333;
-}
-
-.content-section h2 {
-	font-size: 48px;
-	font-weight: 700;
-	margin-bottom: 60px;
-	text-align: center;
-	letter-spacing: 2px;
-	color: #333;
-	font-family: 'Playfair Display', serif;
-}
-
-.content-section h3 {
-	font-size: 24px;
-	font-weight: 600;
-	margin-bottom: 20px;
-	color: #333;
-	font-family: 'Playfair Display', serif;
-}
-
-.content-section p {
-	font-size: 16px;
-	line-height: 1.8;
-	color: rgba(0,0,0,0.7);
-	margin-bottom: 20px;
-	font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-/* About Section */
-.about-content {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 60px;
-	margin-top: 40px;
-}
-
-.agent-profile {
-	padding: 30px;
-	background: rgba(255,255,255,0.6);
-	border-radius: 10px;
-	transition: all 300ms ease;
-	border: 1px solid rgba(0,0,0,0.08);
-}
-
-.agent-profile:hover {
-	background: rgba(255,255,255,0.9);
-	transform: translateY(-5px);
-	box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-/* Listings Section */
-.listings-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 40px;
-	margin-top: 40px;
-}
-
-.listing-item {
-	background: rgba(255,255,255,0.8);
-	border-radius: 10px;
-	overflow: hidden;
-	transition: all 300ms ease;
-	border: 1px solid rgba(0,0,0,0.08);
-}
-
-.listing-item:hover {
-	transform: translateY(-10px);
-	box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-}
-
-.listing-item img {
-	width: 100%;
-	height: 250px;
-	object-fit: cover;
-	display: block;
-}
-
-.listing-item h3 {
-	font-size: 20px;
-	padding: 20px 20px 10px;
-	margin: 0;
-}
-
-.listing-item p {
-	padding: 0 20px;
-	margin: 0 0 10px 0;
-	font-size: 14px;
-}
-
-.listing-item .price {
-	font-size: 22px;
-	font-weight: 700;
-	color: #333;
-	padding: 10px 20px 20px;
-	font-family: 'Playfair Display', serif;
-}
-
-/* Transactions Section */
-.transactions-content {
-	max-width: 900px;
-	margin: 0 auto;
-}
-
-.transactions-content .intro-text {
-	font-size: 18px;
-	text-align: center;
-	margin-bottom: 50px;
-}
-
-.stats-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 40px;
-	margin: 50px 0;
-}
-
-.stat-item {
-	text-align: center;
-	padding: 40px 20px;
-	background: rgba(255,255,255,0.6);
-	border-radius: 10px;
-	border: 1px solid rgba(0,0,0,0.08);
-}
-
-.stat-item h3 {
-	font-size: 48px;
-	font-weight: 700;
-	margin-bottom: 10px;
-	background: linear-gradient(45deg, #f19872, #e86c9a);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	font-family: 'Playfair Display', serif;
-}
-
-/* Market Section */
-.market-content {
-	max-width: 900px;
-	margin: 0 auto;
-}
-
-.market-stats {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 40px;
-	margin: 50px 0;
-}
-
-.market-stat {
-	padding: 30px;
-	background: rgba(255,255,255,0.6);
-	border-radius: 10px;
-	text-align: center;
-	border: 1px solid rgba(0,0,0,0.08);
-}
-
-.market-stat h4 {
-	font-size: 14px;
-	color: rgba(0,0,0,0.5);
-	margin-bottom: 15px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-family: 'Playfair Display', serif;
-}
-
-.market-stat .stat-value {
-	font-size: 36px;
-	font-weight: 700;
-	color: #333;
-	margin-bottom: 10px;
-	font-family: 'Playfair Display', serif;
-}
-
-.market-stat .stat-change {
-	font-size: 16px;
-	color: #07d89d;
-	font-weight: 600;
-	font-family: 'Playfair Display', serif;
-}
-
-/* Contact Section */
-.contact-content {
-	max-width: 700px;
-	margin: 0 auto;
-	text-align: center;
-}
-
-.contact-intro {
-	font-size: 18px;
-	margin-bottom: 50px;
-}
-
-.contact-info {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 60px;
-	margin-top: 40px;
-}
-
-.contact-item h3 {
-	margin-bottom: 30px;
-	font-size: 20px;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	font-family: 'Playfair Display', serif;
-}
-
-.contact-item a {
-	color: #333;
-	font-size: 18px;
-	text-decoration: none;
-	transition: all 300ms ease;
-	display: inline-block;
-	margin-bottom: 15px;
-	font-family: 'Playfair Display', serif;
-}
-
-.contact-item a:hover {
-	color: #f19872;
-	transform: translateX(5px);
-}
 
 /* Responsive */
+
 @media (max-width: 768px) {
-	.about-content,
-	.contact-info {
-		grid-template-columns: 1fr;
-		gap: 30px;
-	}
-	
-	.stats-grid,
-	.market-stats {
-		grid-template-columns: 1fr;
-		gap: 20px;
-	}
-	
-	.listings-grid {
-		grid-template-columns: 1fr;
-	}
-	
-	.content-section h2 {
-		font-size: 36px;
-	}
 	
 	/* Mobile Hero Text Styles */
 	.text-copy .english-title {
@@ -541,6 +299,7 @@ body{
 	.text-copy .chinese-title {
 		font-size: 18px;
 		letter-spacing: 2px;
+		font-weight: 100;
 	}
 	
 	/* Mobile Navigation Styles */
@@ -569,6 +328,7 @@ body{
 		width: 280px;
 		height: 100vh;
 		background: rgba(42, 42, 42, 0.98);
+		-webkit-backdrop-filter: blur(10px);
 		backdrop-filter: blur(10px);
 		flex-direction: column;
 		justify-content: flex-start;
