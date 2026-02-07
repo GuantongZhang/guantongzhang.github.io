@@ -3,7 +3,7 @@
 	// Smooth scroll for scroll indicator
 	$(document).ready(function() {
 		// Background slideshow timing (first slide longer)
-		var $slides = $('.background-slideshow img');
+		var $slides = $('.background-slideshow:visible img');
 		if ($slides.length) {
 			var rootStyles = getComputedStyle(document.documentElement);
 			var baseSeconds = parseFloat(rootStyles.getPropertyValue('--slideshow-duration')) || 4;
