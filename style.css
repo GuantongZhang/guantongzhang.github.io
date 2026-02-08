@@ -7,8 +7,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p, span, div, a {
-	font-family: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-	font-weight: 300 !important;
+	font-family: 'Playfair Display', serif !important;
+	font-weight: 100 !important;
 	letter-spacing: 0.02em;
 }
 
@@ -31,8 +31,8 @@ body{
 	background: #1f2029;
 	overflow-x: hidden;
 	overflow-y: auto;
-	font-family: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-weight: 300;
+	font-family: 'Playfair Display', serif;
+	font-weight: 100;
 	scroll-behavior: smooth;
 	margin: 0;
 	padding: 0;
@@ -315,6 +315,14 @@ body{
 	
 	.mobile-slideshow {
 		display: block;
+	}
+
+	/* Prevent fixed hero layers from showing on overscroll */
+	.background-slideshow,
+	.video-overlay,
+	.text-copy,
+	.scroll-indicator {
+		position: absolute;
 	}
 	
 	/* Mobile Hero Text Styles */
