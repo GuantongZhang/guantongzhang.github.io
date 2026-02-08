@@ -89,6 +89,33 @@
 				scrollTop: $(target).offset().top - navHeight
 			}, 800, 'swing');
 		});
+
+		// Submit Formspree form without redirect
+		var $contactForm = $('form[action*="formspree.io"]');
+		if ($contactForm.length) {
+			$contactForm.on('submit', function(e) {
+				e.preventDefault();
+				var $form = $(this);
+				var $submit = $form.find('button[type="submit"]');
+				var originalText = $submit.text();
+				$submit.prop('disabled', true).text('Sending...');
+
+				$.ajax({
+					url: $form.attr('action'),
+					method: ($form.attr('method') || 'POST').toUpperCase(),
+					data: $form.serialize(),
+					headers: { 'Accept': 'application/json' },
+					dataType: 'json'
+				}).done(function() {
+					$form.trigger('reset');
+					alert('Submitted successfully.');
+				}).fail(function() {
+					alert('Please try again.');
+				}).always(function() {
+					$submit.prop('disabled', false).text(originalText);
+				});
+			});
+		}
 	});
 	
 })(jQuery); 
