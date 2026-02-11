@@ -90,32 +90,101 @@
 			}, 800, 'swing');
 		});
 
-		// Submit Formspree form without redirect
-		var $contactForm = $('form[action*="formspree.io"]');
+		// Contact form submit: prevent navigation and show popup
+		var $contactForm = $('#contact form');
 		if ($contactForm.length) {
 			$contactForm.on('submit', function(e) {
 				e.preventDefault();
-				var $form = $(this);
-				var $submit = $form.find('button[type="submit"]');
-				var originalText = $submit.text();
-				$submit.prop('disabled', true).text('Sending...');
+				var form = this;
+				var actionUrl = $contactForm.attr('action');
+				var formData = new FormData(form);
+				var nameValue = String(formData.get('name') || '').trim();
+				var phoneValue = String(formData.get('phone') || '').trim();
+				var emailValue = String(formData.get('email') || '').trim();
+				var messageValue = String(formData.get('message') || '').trim();
 
-				$.ajax({
-					url: $form.attr('action'),
-					method: ($form.attr('method') || 'POST').toUpperCase(),
-					data: $form.serialize(),
-					headers: { 'Accept': 'application/json' },
-					dataType: 'json'
-				}).done(function() {
-					$form.trigger('reset');
-					alert('Submitted successfully.');
-				}).fail(function() {
-					alert('Please try again.');
-				}).always(function() {
-					$submit.prop('disabled', false).text(originalText);
-				});
+				var isValidName = function(value) {
+					return value.length >= 2 && value.length <= 50;
+				};
+
+				var isValidPhone = function(value) {
+					if (value.length === 0) {
+						return false;
+					}
+					if (/\+/.test(value) && value.indexOf('+') !== 0) {
+						return false;
+					}
+					if (/[^\d\s().+-]/.test(value)) {
+						return false;
+					}
+					var digits = value.replace(/\D/g, '');
+					return digits.length >= 10 && digits.length <= 15;
+				};
+
+				var isValidEmail = function(value) {
+					if (value.length === 0 || value.length > 254) {
+						return false;
+					}
+					return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+				};
+
+				if (!isValidName(nameValue)) {
+					alert("Please enter a valid name.");
+					$('#contact-name').focus();
+					return;
+				}
+
+				if (!isValidPhone(phoneValue)) {
+					alert('Please enter a valid phone number.');
+					$('#contact-phone').focus();
+					return;
+				}
+
+				if (!isValidEmail(emailValue)) {
+					alert('Please enter a valid email address.');
+					$('#contact-email').focus();
+					return;
+				}
+
+				if (messageValue.length > 500) {
+					alert('Please enter a message with 500 characters or less.');
+					$('#contact-message').focus();
+					return;
+				}
+
+				formData.set('name', nameValue);
+				formData.set('phone', phoneValue);
+				formData.set('email', emailValue);
+				formData.set('message', messageValue);
+				var submitButton = $(form).find('button[type="submit"]');
+				submitButton.prop('disabled', true).addClass('opacity-70');
+
+				fetch(actionUrl, {
+					method: 'POST',
+					body: formData
+				})
+					.then(function(response) {
+						return response.text().then(function(text) {
+							return { ok: response.ok, text: text };
+						});
+					})
+					.then(function(result) {
+						if (result.ok) {
+							alert('Thanks! Your message was sent successfully.');
+							form.reset();
+						} else {
+							alert('Sorry, something went wrong. Please try again later.');
+						}
+					})
+					.catch(function() {
+						alert('Sorry, we could not submit your message. Please try again later.');
+					})
+					.finally(function() {
+						submitButton.prop('disabled', false).removeClass('opacity-70');
+					});
 			});
 		}
+
 	});
 	
 })(jQuery); 

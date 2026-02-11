@@ -4,6 +4,7 @@
 /* Tailwind base styles override for font preservation */
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Playfair Display', serif !important;
+	letter-spacing: 0.02em;
 }
 
 p, span, div, a {
@@ -367,13 +368,18 @@ body{
 		backdrop-filter: blur(10px);
 		flex-direction: column;
 		justify-content: flex-start;
-		align-items: flex-start;
+		align-items: center;
 		padding-top: 100px;
-		padding-left: 40px;
-		gap: 30px;
+		padding-left: 0;
+		padding-right: 0;
+		gap: 18px;
 		margin: 0;
 		transition: right 0.4s ease;
 		box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+	}
+
+	.top-nav .nav-menu:not(.active) {
+		transition-delay: 0.2s;
 	}
 	
 	.top-nav .nav-menu.active {
@@ -382,11 +388,24 @@ body{
 	
 	.top-nav li {
 		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 	
 	.top-nav a {
-		font-size: 16px;
+		font-size: 12px;
+		letter-spacing: 0.22em;
 		display: block;
-		padding: 10px 0;
+		padding: 8px 0;
+		width: 220px;
+		max-width: 100%;
+		box-sizing: border-box;
+		text-align: center;
 	}
+}
+
+input, textarea {
+    font-family:
+        'Playfair Display', 'SimSun', 'Songti SC', 'STSong', serif !important;
+    font-weight: 400 !important;
 }
