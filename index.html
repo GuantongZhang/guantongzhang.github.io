@@ -24,8 +24,8 @@
     <li><a href="#about">ABOUT US</a></li>
     <li><a href="#listings">FEATURED LISTINGS</a></li>
     <li><a href="#transactions">PAST TRANSACTIONS</a></li>
+    <li><a href="#services">OUR SERVICES</a></li>
     <li><a href="#market">MARKET UPDATES</a></li>
-    <li><a href="#contact">CONTACT US</a></li>
   </ul>
 </nav>
 
@@ -50,6 +50,10 @@
 <div class="text-copy">
   <div class="english-title">Coastal Luxury, Seamlessly Delivered​</div>
   <div class="chinese-title">南加海岸奢居，从容兑现</div>
+  <div class="hero-buttons">
+    <a href="all-listings.html" class="hero-button">View all listings</a>
+    <a href="#contact" class="hero-button">Contact us</a>
+  </div>
 </div>
 
 <!-- Scroll Indicator -->
@@ -73,12 +77,12 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-[#f8f7f4] p-8 rounded-lg">
           <h3 class="text-2xl font-semibold mb-4">Jie Zheng</h3>
-          <p class="mb-4">CA DRE# 01969518</p>
+          <p class="mb-4">CA DRE #01969518</p>
           <p class="text-gray-600">As a top real estate agent with extensive experience, Jie is known for her focus on delivering positive results and her strong expertise in real estate market conditions. She is a member of the President’s Circle and was ranked as the #2 National Performing Agent in sales in 2018. Jie earned a Master’s degree from Lehigh University with a concentration in Business Data Analysis.<br>Having immigrated from China in 2004, Jie speaks fluent Mandarin and has a deep understanding of Chinese culture, enabling her to effectively serve a broad client base both locally and internationally.<br>Jie currently lives in Irvine with her husband and two children. Whether you are looking to buy or sell a home, she would be honored to meet with you and discuss your real estate needs.</p>
         </div>
         <div class="bg-[#f8f7f4] p-8 rounded-lg">
           <h3 class="text-2xl font-semibold mb-4">Maggie Pang</h3>
-          <p class="mb-4">CA DRE# 02186012</p>
+          <p class="mb-4">CA DRE #02186012</p>
           <p class="text-gray-600">With 16 years of real estate investment experience, Maggie brings a practical, investor-minded approach to every transaction. She has flipped over 30 properties across Southern California, giving her clients an edge when it comes to pricing, negotiations, and spotting opportunities.<br>Maggie is passionate about real estate investing and remodeling, with a keen eye for interior and landscape design. She enjoys helping clients see possibilities beyond what is on the surface and takes pride in making the process smooth and rewarding, while guiding them through one of the most important financial decisions of their lives.<br>Fluent in Chinese, Maggie proudly serves a diverse client base. She is based in Orange County, where she lives with her husband, two children, and a very beloved dog. When she is not working, you’ll likely find her out running, swimming, training for relay races.</p>
         </div>
       </div>
@@ -94,39 +98,83 @@
         <p class="max-w-5xl mx-auto text-lg">Explore our carefully selected collection of premium properties in Southern California’s most desirable locations.</p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-          <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/30781.jpg" alt="Property" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">30781 Via Conquista</h3>
-            <p class="text-gray-600 mb-3">San Juan Capistrano, CA 92675</p>
-            <p class="text-2xl font-semibold text-primary">$3,398,000</p>
+      <div class="listings-carousel-wrapper">
+        <button type="button" class="listings-carousel-btn listings-carousel-prev" aria-label="Previous listings" disabled>
+          <i class="ri-arrow-left-s-line" aria-hidden="true"></i>
+        </button>
+        <div class="listings-carousel">
+          <div class="listings-track">
+          <div class="listing-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/30781.jpg" alt="Property" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">30781 Via Conquista</h3>
+              <p class="listing-address text-gray-600 mb-2">San Juan Capistrano, CA 92675</p>
+              <p class="listing-card-stats text-gray-500 text-sm mb-3">5 Beds · 6 Baths · 4,200 sqft</p>
+              <p class="text-2xl font-semibold text-primary">$3,398,000</p>
+            </div>
+          </div>
+          <div class="listing-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/33841.jpg" alt="Property" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">33841 Robles Dr</h3>
+              <p class="listing-address text-gray-600 mb-2">Dana Point, CA 92629</p>
+              <p class="listing-card-stats text-gray-500 text-sm mb-3">4 Beds · 4 Baths · 3,100 sqft</p>
+              <p class="text-2xl font-semibold text-primary">$2,250,000</p>
+            </div>
+          </div>
+          <div class="listing-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/27724.jpeg" alt="Property" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">27724 Somerset Ln</h3>
+              <p class="listing-address text-gray-600 mb-2">San Juan Capistrano, CA 92675</p>
+              <p class="listing-card-stats text-gray-500 text-sm mb-3">5 Beds · 5 Baths · 4,800 sqft</p>
+              <p class="text-2xl font-semibold text-primary">$3,953,778</p>
+            </div>
+          </div>
+          <div class="listing-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/110.jpeg" alt="Property" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">110 Copeland</h3>
+              <p class="listing-address text-gray-600 mb-2">Irvine, CA 92618</p>
+              <p class="listing-card-stats text-gray-500 text-sm mb-3">3 Beds · 3 Baths · 2,200 sqft</p>
+              <p class="text-2xl font-semibold text-primary">$1,600,000</p>
+            </div>
+          </div>
+          <div class="listing-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/110.jpeg" alt="Property" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">42 Park View Dr</h3>
+              <p class="listing-address text-gray-600 mb-2">Newport Beach, CA 92660</p>
+              <p class="listing-card-stats text-gray-500 text-sm mb-3">4 Beds · 3 Baths · 2,800 sqft</p>
+              <p class="text-2xl font-semibold text-primary">$2,100,000</p>
+            </div>
+          </div>
+          <div class="listing-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/110.jpeg" alt="Property" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">88 Harbor Lights</h3>
+              <p class="listing-address text-gray-600 mb-2">Laguna Beach, CA 92651</p>
+              <p class="listing-card-stats text-gray-500 text-sm mb-3">4 Beds · 4 Baths · 3,400 sqft</p>
+              <p class="text-2xl font-semibold text-primary">$2,850,000</p>
+            </div>
+          </div>
+          <div class="listing-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/110.jpeg" alt="Property" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">156 Coastal Way</h3>
+              <p class="listing-address text-gray-600 mb-2">San Clemente, CA 92672</p>
+              <p class="listing-card-stats text-gray-500 text-sm mb-3">3 Beds · 3 Baths · 2,500 sqft</p>
+              <p class="text-2xl font-semibold text-primary">$1,950,000</p>
+            </div>
           </div>
         </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-          <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/33841.jpg" alt="Property" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">33841 Robles Dr</h3>
-            <p class="text-gray-600 mb-3">Dana Point, CA 92629</p>
-            <p class="text-2xl font-semibold text-primary">$2,250,000</p>
-          </div>
         </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-          <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/27724.jpeg" alt="Property" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">27724 Somerset Ln</h3>
-            <p class="text-gray-600 mb-3">San Juan Capistrano, CA 92675</p>
-            <p class="text-2xl font-semibold text-primary">$3,953,778</p>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-          <img src="https://raw.githubusercontent.com/GuantongZhang/Jie-and-Maggie-Webpage/main/assets/110.jpeg" alt="Property" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">110 Copeland</h3>
-            <p class="text-gray-600 mb-3">Irvine, CA 92618</p>
-            <p class="text-2xl font-semibold text-primary">$1,600,000</p>
-          </div>
-        </div>
+        <button type="button" class="listings-carousel-btn listings-carousel-next" aria-label="Next listings">
+          <i class="ri-arrow-right-s-line" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="text-center mt-10">
+        <a href="all-listings.html" class="inline-block bg-primary text-white px-8 py-3 rounded-button font-semibold hover:opacity-90 transition-opacity uppercase tracking-widest text-sm">See All Listings</a>
       </div>
     </div>
   </section>
@@ -158,27 +206,53 @@
     </div>
   </section>
 
-  <!-- Market Update Section -->
-  <section id="market" class="py-12 bg-[#f8f7f4]">
+  <!-- Our Services Section -->
+  <section id="services" class="py-12 bg-[#f8f7f4]">
     <div class="container mx-auto px-4">
       <div class="text-center mb-8">
-        <h2 class="text-4xl font-semibold mb-4">Market Update</h2>
+        <h2 class="text-4xl font-semibold mb-4">Our Services</h2>
+        <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+        <p class="max-w-5xl mx-auto text-lg">Placeholder text: We offer a full range of real estate services tailored to buyers, sellers, and investors across Southern California.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-lg">
+          <h3 class="text-2xl font-semibold mb-4">Service One</h3>
+          <p class="text-gray-600">Placeholder text: A short description of the first service offered by your team.</p>
+        </div>
+        <div class="bg-white p-8 rounded-lg">
+          <h3 class="text-2xl font-semibold mb-4">Service Two</h3>
+          <p class="text-gray-600">Placeholder text: A short description of the second service offered by your team.</p>
+        </div>
+        <div class="bg-white p-8 rounded-lg">
+          <h3 class="text-2xl font-semibold mb-4">Service Three</h3>
+          <p class="text-gray-600">Placeholder text: A short description of the third service offered by your team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Market Updates Section -->
+  <section id="market" class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-4xl font-semibold mb-4">Market Updates</h2>
         <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
         <p class="max-w-5xl mx-auto text-lg text-left">The housing market is constantly changing, and these figures provide a quick glance at what’s happening, helping you make informed buying or selling decisions.</p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-        <div class="bg-white p-8 rounded-lg text-center">
+        <div class="bg-[#f8f7f4] p-8 rounded-lg text-center">
           <h4 class="text-sm text-gray-500 uppercase tracking-wider mb-4">Median Home Price</h4>
           <p class="text-4xl font-bold text-secondary mb-3">$2,275,000</p>
           <p class="text-lg text-green-600 font-semibold">-1.1% MoM</p>
         </div>
-        <div class="bg-white p-8 rounded-lg text-center">
+        <div class="bg-[#f8f7f4] p-8 rounded-lg text-center">
           <h4 class="text-sm text-gray-500 uppercase tracking-wider mb-4">Average Days on Market</h4>
           <p class="text-4xl font-bold text-secondary mb-3">87 days</p>
           <p class="text-lg text-green-600 font-semibold">-4 days MoM</p>
         </div>
-        <div class="bg-white p-8 rounded-lg text-center">
+        <div class="bg-[#f8f7f4] p-8 rounded-lg text-center">
           <h4 class="text-sm text-gray-500 uppercase tracking-wider mb-4">Active Listings</h4>
           <p class="text-4xl font-bold text-secondary mb-3">276</p>
           <p class="text-lg text-green-600 font-semibold">-18.1% MoM</p>
@@ -192,14 +266,14 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="pt-12 pb-0 bg-white">
+  <section id="contact" class="pt-12 pb-0 bg-[#f8f7f4]">
     <div class="container mx-auto px-4">
       <div class="text-center mb-8">
         <h2 class="text-4xl font-semibold mb-4">Contact Us</h2>
         <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
         <p class="max-w-5xl mx-auto text-lg">Ready to get in touch? We’d love to hear from you.</p>
       </div>
-      <div class="mt-12 bg-[#f8f7f4] p-8 rounded-lg">
+      <div class="mt-12 bg-white p-8 rounded-lg">
         <form action="https://long-snow-260c.gtzhang2002.workers.dev" method="POST" class="space-y-5">
           <div>
             <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-2">Your Name*</label>
@@ -223,30 +297,7 @@
         </form>
       </div>
     </div>
-    <div class="mt-12 bg-secondary text-white px-6 py-6 w-full">
-      <div class="max-w-6xl mx-auto flex flex-row items-start gap-6 md:gap-8">
-        <div class="text-left tracking-widest leading-tight ml-0 md:-ml-16 shrink-0">
-          <h3 class="text-2xl font-semibold">Direct</h3>
-          <h3 class="text-2xl font-semibold">Contact</h3>
-        </div>
-        <div class="flex flex-col gap-4 text-left ml-0 md:ml-10 flex-1">
-          <div class="flex items-start gap-x-4 ml-0 md:ml-6">
-            <i class="ri-phone-line text-primary text-2xl"></i>
-            <div class="flex flex-col md:flex-row gap-1 md:gap-x-6">
-              <a href="tel:+12018397150" class="hover:text-primary transition-colors">(201) 839-7150</a>
-              <a href="tel:+19493063083" class="hover:text-primary transition-colors">(949) 306-3083</a>
-            </div>
-          </div>
-          <div class="flex items-start gap-x-4 ml-0 md:ml-6">
-            <i class="ri-mail-line text-primary text-2xl"></i>
-            <div class="flex flex-col md:flex-row gap-1 md:gap-x-6">
-              <a href="mailto:zhengjie1983@gmail.com" class="hover:text-primary transition-colors">zhengjie1983@gmail.com</a>
-              <a href="mailto:fangpang@hotmail.com" class="hover:text-primary transition-colors">fangpang@hotmail.com</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="global-bottom-bar"></div>
   </section>
 
 </div>

@@ -2,6 +2,48 @@
 		
 	// Smooth scroll for scroll indicator
 	$(document).ready(function() {
+		// Inject shared bottom bar (single source for all pages)
+		var $bottomBarMount = $('#global-bottom-bar');
+		if ($bottomBarMount.length) {
+			$bottomBarMount.html(
+				'<section class="bg-secondary text-white px-6 py-6 w-full">' +
+					'<div class="max-w-6xl mx-auto contact-footer-layout">' +
+						'<div class="contact-footer-contact">' +
+							'<div class="text-left tracking-widest leading-tight ml-0 md:-ml-16 shrink-0">' +
+								'<h3 class="text-2xl font-semibold">Direct</h3>' +
+								'<h3 class="text-2xl font-semibold">Contact</h3>' +
+							'</div>' +
+							'<div class="flex flex-col gap-4 text-left ml-0 md:ml-10 flex-1">' +
+								'<div class="flex items-start gap-x-4 ml-0 md:ml-6">' +
+									'<i class="ri-phone-line text-primary text-2xl"></i>' +
+									'<div class="flex flex-col md:flex-row gap-1 md:gap-x-6">' +
+										'<a href="tel:+12018397150" class="hover:text-primary transition-colors">(201) 839-7150</a>' +
+										'<a href="tel:+19493063083" class="hover:text-primary transition-colors">(949) 306-3083</a>' +
+									'</div>' +
+								'</div>' +
+								'<div class="flex items-start gap-x-4 ml-0 md:ml-6">' +
+									'<i class="ri-mail-line text-primary text-2xl"></i>' +
+									'<div class="flex flex-col md:flex-row gap-1 md:gap-x-6">' +
+										'<a href="mailto:zhengjie1983@gmail.com" class="hover:text-primary transition-colors">zhengjie1983@gmail.com</a>' +
+										'<a href="mailto:fangpang@hotmail.com" class="hover:text-primary transition-colors">fangpang@hotmail.com</a>' +
+									'</div>' +
+								'</div>' +
+							'</div>' +
+						'</div>' +
+						'<div class="contact-footer-legal">' +
+							'<p class="site-footer-line">© 2026 Jie &amp; Maggie Real Estate Team. All rights reserved.</p>' +
+							'<p class="site-footer-line">CA DRE #01969518 | CA DRE #02186012</p>' +
+							'<div class="site-footer-links">' +
+								'<a href="terms-of-service.html">Terms of Service</a>' +
+								'<a href="privacy-policy.html">Privacy Policy</a>' +
+								'<a href="cookie-policy.html">Cookie Policy</a>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+				'</section>'
+			);
+		}
+
 		// Background slideshow timing (first slide longer)
 		var $slides = $('.background-slideshow:visible img');
 		if ($slides.length) {
@@ -71,6 +113,53 @@
 			}
 		});
 		
+		// Featured listings carousel
+		var $carousel = $('.listings-carousel');
+		var $track = $('.listings-track');
+		var $cards = $('.listing-card');
+		var gapPx = 32;
+		var totalCards = $cards.length;
+
+		function getVisibleCount() {
+			return window.innerWidth <= 768 ? 1 : 4;
+		}
+
+		function getMaxIndex() {
+			return Math.max(0, totalCards - getVisibleCount());
+		}
+
+		function updateCarousel(index) {
+			var visible = getVisibleCount();
+			var carouselWidth = $carousel.innerWidth();
+			var cardWidth = (carouselWidth - gapPx * (visible - 1)) / visible;
+			var step = cardWidth + gapPx;
+			$cards.css('width', cardWidth + 'px');
+			$track.css('transform', 'translateX(-' + (index * step) + 'px)');
+			$carousel.data('index', index);
+			$('.listings-carousel-prev').prop('disabled', index <= 0);
+			$('.listings-carousel-next').prop('disabled', index >= getMaxIndex());
+		}
+
+		if ($carousel.length && $track.length) {
+			$carousel.data('index', 0);
+			updateCarousel(0);
+
+			$('.listings-carousel-prev').on('click', function() {
+				var idx = $carousel.data('index');
+				if (idx > 0) updateCarousel(idx - 1);
+			});
+			$('.listings-carousel-next').on('click', function() {
+				var idx = $carousel.data('index');
+				if (idx < getMaxIndex()) updateCarousel(idx + 1);
+			});
+
+			$(window).on('resize', function() {
+				var idx = Math.min($carousel.data('index'), getMaxIndex());
+				$carousel.data('index', idx);
+				updateCarousel(idx);
+			});
+		}
+
 		$('.scroll-indicator').on('click', function(e) {
 			e.preventDefault();
 			var target = $(this).attr('href');
@@ -88,6 +177,16 @@
 			$('html, body').animate({
 				scrollTop: $(target).offset().top - navHeight
 			}, 800, 'swing');
+		});
+
+		// Slower smooth scroll for hero CTA links (e.g., Contact us)
+		$('.hero-button[href^="#"]').on('click', function(e) {
+			e.preventDefault();
+			var target = $(this).attr('href');
+			var navHeight = $('.top-nav').outerHeight();
+			$('html, body').animate({
+				scrollTop: $(target).offset().top - navHeight
+			}, 1400, 'swing');
 		});
 
 		// Contact form submit: prevent navigation and show popup
