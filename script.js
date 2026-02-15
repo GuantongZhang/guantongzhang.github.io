@@ -112,6 +112,107 @@
 				$('.top-nav').removeClass('scrolled');
 			}
 		});
+
+		// Listings data (single source for featured + all listings)
+		var listingsData = [
+			{
+				image: 'assets/30781.jpg',
+				title: '30781 Via Conquista',
+				address: 'San Juan Capistrano, CA 92675',
+				stats: '5 Beds · 6 Baths · 4,596 sqft',
+				price: '$3,398,000',
+				status: 'listing'
+			},
+			{
+				image: 'assets/52.jpg',
+				title: '52 Cummings',
+				address: 'Irvine, CA 92620',
+				stats: '4 Beds · 4 Baths · 2,894 sqft',
+				price: '$2,750,000',
+				status: 'listing'
+			},
+			{
+				image: 'assets/219.jpg',
+				title: '219 Ladera Vista Dr',
+				address: 'Fullerton, CA 92831',
+				stats: '4 Beds · 3 Baths · 2,513 sqft',
+				price: '$1,398,000',
+				status: 'listing'
+			},
+			{
+				image: 'assets/161.jpeg',
+				title: '161 Schick',
+				address: 'Irvine, CA 92614',
+				stats: '4 Beds · 3.5 Baths · 2,266 sqft',
+				price: '$1,288,000',
+				status: 'in escrow'
+			},
+			{
+				image: 'assets/121.jpeg',
+				title: '121 Yugen',
+				address: 'Irvine, CA 92618',
+				stats: '4 Beds · 3 Baths · 2,387 sqft',
+				price: '$1,688,000',
+				status: 'in escrow'
+			},
+			{
+				image: 'assets/27724.jpeg',
+				title: '27724 Somerset Ln',
+				address: 'San Juan Capistrano, CA 92675',
+				stats: '5 Beds · 5.5 Baths · 5,042 sqft',
+				price: '$3,999,999',
+				status: 'sold'
+			},
+			{
+				image: 'assets/33841.jpg',
+				title: '33841 Robles Dr',
+				address: 'Dana Point, CA 92629',
+				stats: '5 Beds · 4 Baths · 2,464 sqft',
+				price: '$2,225,000',
+				status: 'sold'
+			},
+			{
+				image: 'assets/110.jpeg',
+				title: '110 Copeland',
+				address: 'Irvine, CA 92618',
+				stats: '4 Beds · 4 Baths · 1,800 sqft',
+				price: '$1,600,000',
+				status: 'sold'
+			}
+		];
+
+		function listingCardMarkup(listing) {
+			var statusText = listing.status || 'listing';
+			var statusClass = statusText.replace(/\s+/g, '-');
+			var statusBadge = statusText !== 'listing'
+				? '<span class="listing-status ' + statusClass + '">' + statusText + '</span>'
+				: '';
+
+			return (
+				'<div class="listing-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">' +
+					'<div class="listing-media">' +
+						'<img src="' + listing.image + '" alt="Property" class="w-full h-64 object-cover">' +
+						statusBadge +
+					'</div>' +
+					'<div class="p-6">' +
+						'<h3 class="text-xl font-semibold mb-2">' + listing.title + '</h3>' +
+						'<p class="listing-address text-gray-600 mb-2">' + listing.address + '</p>' +
+						'<p class="listing-card-stats text-gray-500 text-sm mb-3">' + listing.stats + '</p>' +
+						'<p class="text-2xl font-semibold text-primary">' + listing.price + '</p>' +
+					'</div>' +
+				'</div>'
+			);
+		}
+
+		var $featuredTrack = $('.listings-track');
+		if ($featuredTrack.length) {
+			$featuredTrack.html(listingsData.map(listingCardMarkup).join(''));
+		}
+
+		var $allListingsGrid = $('.all-listings-grid');
+		if ($allListingsGrid.length) {
+			$allListingsGrid.html(listingsData.map(listingCardMarkup).join(''));
+		}
 		
 		// Featured listings carousel
 		var $carousel = $('.listings-carousel');
@@ -157,6 +258,104 @@
 				var idx = Math.min($carousel.data('index'), getMaxIndex());
 				$carousel.data('index', idx);
 				updateCarousel(idx);
+			});
+		}
+
+		// Reviews carousel (looping)
+		var $reviewsCarousel = $('.reviews-carousel');
+		if ($reviewsCarousel.length) {
+			$reviewsCarousel.each(function() {
+				var $carouselRoot = $(this);
+				var $viewport = $carouselRoot.find('.reviews-viewport');
+				var $reviewsTrack = $carouselRoot.find('.reviews-track');
+				var $reviewCards = $reviewsTrack.children('.review-card');
+				var reviewCount = $reviewCards.length;
+				var reviewIndex = 1;
+				var visibleCount = 1;
+				var reviewGap = 16;
+				var isTransitioning = false;
+
+				if (!reviewCount) {
+					return;
+				}
+
+				function getVisibleCount() {
+					return window.innerWidth <= 768 ? 1 : 2;
+				}
+
+				function setupClones() {
+					$reviewsTrack.find('.is-clone').remove();
+					$reviewCards = $reviewsTrack.children('.review-card');
+					reviewCount = $reviewCards.length;
+					visibleCount = getVisibleCount();
+					var $headClones = $reviewCards.slice(0, visibleCount).clone().addClass('is-clone');
+					var $tailClones = $reviewCards.slice(-visibleCount).clone().addClass('is-clone');
+					$reviewsTrack.prepend($tailClones);
+					$reviewsTrack.append($headClones);
+					$reviewCards = $reviewsTrack.children('.review-card');
+					reviewIndex = visibleCount;
+				}
+
+				function setTransition(enabled) {
+					$reviewsTrack.css('transition', enabled ? 'transform 0.6s ease' : 'none');
+				}
+
+				function updateWidths() {
+					var viewportWidth = $viewport.innerWidth();
+					visibleCount = getVisibleCount();
+					var cardWidth = (viewportWidth - reviewGap * (visibleCount - 1)) / visibleCount;
+					$reviewCards.css('width', cardWidth + 'px');
+					return cardWidth;
+				}
+
+				function goToIndex(index, useTransition) {
+					var cardWidth = updateWidths();
+					var step = cardWidth + reviewGap;
+					setTransition(useTransition);
+					$reviewsTrack.css('transform', 'translateX(-' + (index * step) + 'px)');
+					reviewIndex = index;
+				}
+
+				function getRealIndex() {
+					return ((reviewIndex - visibleCount) % reviewCount + reviewCount) % reviewCount;
+				}
+
+				setupClones();
+				goToIndex(reviewIndex, false);
+
+				$reviewsTrack.on('transitionend', function() {
+					if (!isTransitioning) {
+						return;
+					}
+					isTransitioning = false;
+					if (reviewIndex <= visibleCount - 1) {
+						goToIndex(reviewIndex + reviewCount, false);
+					} else if (reviewIndex >= reviewCount + visibleCount) {
+						goToIndex(reviewIndex - reviewCount, false);
+					}
+				});
+
+				$carouselRoot.find('.reviews-carousel-prev').on('click', function() {
+					if (isTransitioning) {
+						return;
+					}
+					isTransitioning = true;
+					goToIndex(reviewIndex - 1, true);
+				});
+
+				$carouselRoot.find('.reviews-carousel-next').on('click', function() {
+					if (isTransitioning) {
+						return;
+					}
+					isTransitioning = true;
+					goToIndex(reviewIndex + 1, true);
+				});
+
+				$(window).on('resize', function() {
+					var realIndex = getRealIndex();
+					setupClones();
+					goToIndex(visibleCount + realIndex, false);
+				});
 			});
 		}
 

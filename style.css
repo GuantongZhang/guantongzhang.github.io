@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&display=swap');
 
 /* Tailwind base styles override for font preservation */
 h1, h2, h3, h4, h5, h6 {
@@ -243,10 +244,10 @@ body{
 }
 
 .text-copy .chinese-title {
-	font-family: 'Noto Sans SC', sans-serif;
+	font-family: 'Noto Serif SC', 'Noto Sans SC', serif !important;
 	font-size: 30px;
-	font-weight: 100;
 	letter-spacing: 1px;
+	font-weight: 400 !important;
 	font-synthesis: none;
 	-webkit-font-smoothing: antialiased;
 }
@@ -351,6 +352,277 @@ body{
 	z-index: 10;
 }
 
+/* Services layout */
+.services-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+	gap: 5%;
+	align-items: stretch;
+}
+
+.services-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 20px;
+}
+
+.service-card {
+	height: 100%;
+}
+
+.service-card h3 {
+	font-size: 1.4rem;
+}
+
+.service-card p {
+	font-size: 0.95rem;
+}
+
+.services-image {
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 16px;
+	min-height: 280px;
+	aspect-ratio: 1 / 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	justify-self: end;
+}
+
+.services-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* Past Transactions layout */
+.transactions-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+	gap: 5%;
+	align-items: center;
+}
+
+.transactions-image {
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 16px;
+	min-height: 320px;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+}
+
+.transactions-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.transactions-stats {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: flex-start;
+	padding-left: 0;
+}
+
+.transactions-stat {
+	font-family: 'Bodoni 72', 'Bodoni MT', 'Playfair Display', serif;
+	font-style: italic;
+	font-size: 1.6rem;
+	letter-spacing: 0.03em;
+	color: #B28551;
+	margin: 0;
+	display: inline-flex;
+	align-items: baseline;
+	gap: 8px;
+	white-space: nowrap;
+}
+
+.transactions-stat-value {
+	font-size: 3.6rem;
+	font-weight: 600;
+	margin-right: 8px;
+	color: #C69C6D;
+}
+
+.transactions-stat-label {
+	font-size: 1.3rem;
+	letter-spacing: 0.02em;
+	color: #8A8A8A;
+}
+
+.transactions-stat.align-right {
+	align-self: flex-end;
+	text-align: right;
+}
+
+.transactions-stat.align-left {
+	align-self: flex-start;
+	text-align: left;
+}
+
+.transactions-stat.indent-0,
+.transactions-stat.indent-3,
+.transactions-stat.indent-6 {
+	align-self: flex-start;
+	text-align: left;
+}
+
+.transactions-stat.indent-0 {
+	margin-left: 4.5rem;
+}
+
+.transactions-stat.indent-3 {
+	margin-left: 7.5rem;
+}
+
+.transactions-stat.indent-6 {
+	margin-left: 10.5rem;
+}
+
+.transactions-reviews {
+	margin-top: 16px;
+	width: 100%;
+	margin-left: 0;
+}
+
+.reviews-carousel {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 6px;
+	width: 100%;
+}
+
+.reviews-viewport {
+	overflow: hidden;
+	width: 100%;
+}
+
+.reviews-track {
+	display: flex;
+	gap: 16px;
+	transition: transform 0.6s ease;
+	will-change: transform;
+}
+
+.review-card {
+	flex: 0 0 auto;
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 16px;
+	padding: 20px 24px;
+	box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+	min-height: 190px;
+}
+
+.review-header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 10px;
+}
+
+.review-avatar {
+	width: 54px;
+	height: 54px;
+	border-radius: 50%;
+	border: 2px solid rgba(198, 156, 109, 0.6);
+	background: rgba(198, 156, 109, 0.15);
+	color: #C69C6D;
+	font-size: 1.2rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.review-name {
+	font-size: 1rem;
+	font-weight: 600;
+	margin: 0;
+}
+
+.review-date {
+	font-size: 0.85rem;
+	color: #8A8A8A;
+	margin: 4px 0 0;
+}
+
+.review-stars {
+	color: #C69C6D;
+	font-size: 1rem;
+	letter-spacing: 2px;
+	margin-bottom: 10px;
+}
+
+.review-text {
+	font-size: 0.98rem;
+	line-height: 1.6;
+	color: #3A3A3A;
+	margin: 0;
+}
+
+.reviews-carousel-btn {
+	width: 36px;
+	height: 36px;
+	border-radius: 999px;
+	background: #fff;
+	color: #C69C6D;
+	border: 2px solid #C69C6D;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+	box-shadow: 0 2px 10px rgba(198, 156, 109, 0.2);
+}
+
+.reviews-carousel-btn:hover {
+	background: #C69C6D;
+	color: #fff;
+	box-shadow: 0 4px 14px rgba(198, 156, 109, 0.35);
+}
+
+.reviews-carousel-btn i {
+	font-size: 22px;
+	line-height: 1;
+}
+
+/* Market layout */
+.market-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+	gap: 32px;
+	align-items: start;
+}
+
+.market-image {
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 16px;
+	min-height: 320px;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+}
+
+.market-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.market-footnote {
+	text-align: center;
+}
+
 .contact-footer-layout {
 	display: flex;
 	align-items: flex-end;
@@ -443,7 +715,8 @@ body{
 	.text-copy .chinese-title {
 		font-size: 24px;
 		letter-spacing: 2px;
-		font-weight: 100;
+		font-family: 'Noto Serif SC', 'Noto Sans SC', serif !important;
+		font-weight: 400 !important;
 	}
 
 	.hero-buttons {
@@ -558,6 +831,102 @@ body{
 		font-size: 10px;
 		letter-spacing: 0.1em;
 	}
+
+	.services-layout {
+		display: flex;
+		flex-direction: column;
+		gap: 22px;
+	}
+
+	.services-grid {
+		gap: 14px;
+	}
+
+	.services-image {
+		max-width: 420px;
+		width: 100%;
+		margin: 0 auto;
+		order: -1;
+	}
+
+	.services-grid {
+		order: 1;
+	}
+
+	.market-layout {
+		grid-template-columns: 1fr;
+		gap: 22px;
+	}
+
+	.market-image {
+		max-width: 420px;
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.transactions-layout {
+		grid-template-columns: 1fr;
+		gap: 22px;
+	}
+
+	.transactions-image {
+		max-width: 420px;
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.transactions-stats {
+		align-items: center;
+		text-align: center;
+	}
+
+	.transactions-stat-value {
+		font-size: 2.8rem;
+	}
+
+	.transactions-stat {
+		font-size: 1.2rem;
+		gap: 6px;
+	}
+
+	.transactions-stat-label {
+		font-size: 0.95rem;
+	}
+
+	.reviews-carousel {
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		gap: 10px;
+	}
+
+	.reviews-carousel-btn {
+		width: 40px;
+		height: 40px;
+	}
+	.transactions-stat.indent-0 {
+		margin-left: 1.5rem;
+	}
+
+	.transactions-stat.indent-3 {
+		margin-left: 3rem;
+	}
+
+	.transactions-stat.indent-6 {
+		margin-left: 4.5rem;
+	}
+}
+
+@media (max-width: 640px) {
+	.services-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.service-card {
+		padding: 16px;
+	}
+
+	.service-card h3 {
+		font-size: 1.1rem;
+	}
 }
 
 /* #Featured Listings Carousel
@@ -589,6 +958,37 @@ body{
 	width: calc((100% - 2rem * 3) / 4);
 	min-width: 0;
 	box-sizing: border-box;
+}
+
+.listing-media {
+	position: relative;
+}
+
+.listing-status {
+	position: absolute;
+	top: 16px;
+	left: 16px;
+	padding: 6px 12px;
+	border-radius: 999px;
+	background: rgba(26, 26, 26, 0.78);
+	color: #fff;
+	font-size: 11px;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	font-weight: 600;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+}
+
+.listing-status.in-escrow {
+	background: rgba(35, 31, 32, 0.45);
+	color: #fff;
+}
+
+.listing-status.sold {
+	background: rgba(35, 31, 32, 0.85);
+	color: #fff;
 }
 
 .listing-address {
