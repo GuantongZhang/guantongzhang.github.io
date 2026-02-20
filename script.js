@@ -113,6 +113,44 @@
 			}
 		});
 
+		// Past transactions stats: slow staggered reveal on scroll into view
+		(function initTransactionsStatsReveal() {
+			var $stats = $('.transactions-stats .transactions-stat');
+			if (!$stats.length) {
+				return;
+			}
+
+			$stats.addClass('reveal-ready');
+
+			var revealStats = function() {
+				$stats.each(function(i) {
+					var el = this;
+					window.setTimeout(function() {
+						el.classList.add('is-visible');
+					}, i * 550);
+				});
+			};
+
+			if (!('IntersectionObserver' in window)) {
+				revealStats();
+				return;
+			}
+
+			var triggered = false;
+			var observer = new IntersectionObserver(function(entries) {
+				entries.forEach(function(entry) {
+					if (triggered || !entry.isIntersecting) {
+						return;
+					}
+					triggered = true;
+					revealStats();
+					observer.disconnect();
+				});
+			}, { threshold: 0.35 });
+
+			observer.observe($stats.get(0));
+		})();
+
 		// Listings data (single source for featured + all listings)
 		var listingsData = [
 			{
@@ -358,6 +396,67 @@
 				});
 			});
 		}
+
+		// Truncate reviews to 5 lines and add modal to view full text
+		(function initReviewClamps() {
+			var $reviewTexts = $('.reviews-track .review-card .review-text');
+			if (!$reviewTexts.length) return;
+			// Add clamp class and accessible attributes
+			$reviewTexts.each(function() {
+				var $p = $(this);
+				$p.addClass('clamp-5');
+				$p.attr('role', 'button');
+				$p.attr('tabindex', '0');
+			});
+
+			// Create modal markup if not present
+			if ($('#review-modal-overlay').length === 0) {
+				$('body').append(
+					'<div id="review-modal-overlay" class="review-modal-overlay" style="display:none">' +
+						'<div class="review-modal" role="dialog" aria-modal="true" aria-label="Full review">' +
+							'<button class="review-modal-close" aria-label="Close review">&times;</button>' +
+							'<div class="review-modal-body"></div>' +
+						'</div>' +
+					'</div>'
+				);
+			}
+
+			// Open modal on click or Enter/Space
+			$('body').on('click', '.reviews-track .review-card .review-text', function(e) {
+				var text = $(this).text().trim();
+				$('#review-modal-overlay .review-modal-body').text(text);
+				$('#review-modal-overlay').fadeIn(120);
+				$(this).attr('aria-expanded', 'true');
+			});
+
+			$('body').on('keydown', '.reviews-track .review-card .review-text', function(e) {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					$(this).trigger('click');
+				}
+			});
+
+			// Close modal when clicking overlay or close button
+			$('body').on('click', '#review-modal-overlay', function(e) {
+				if (e.target.id === 'review-modal-overlay') {
+					$('#review-modal-overlay').fadeOut(120);
+					$('.reviews-track .review-card .review-text').attr('aria-expanded', 'false');
+				}
+			});
+
+			$('body').on('click', '.review-modal-close', function() {
+				$('#review-modal-overlay').fadeOut(120);
+				$('.reviews-track .review-card .review-text').attr('aria-expanded', 'false');
+			});
+
+			// Close on Escape
+			$(document).on('keydown', function(e) {
+				if (e.key === 'Escape') {
+					$('#review-modal-overlay').fadeOut(120);
+					$('.reviews-track .review-card .review-text').attr('aria-expanded', 'false');
+				}
+			});
+		})();
 
 		$('.scroll-indicator').on('click', function(e) {
 			e.preventDefault();
